@@ -15,6 +15,7 @@ import {
   subMonths,
 } from 'date-fns';
 import { ru } from 'date-fns/locale';
+import { kk } from 'date-fns/locale';
 import { ChevronLeft, ChevronRight, Home } from 'lucide-react';
 import { useCompletionStore } from '@/stores/completionStore';
 import { useRoomStore } from '@/stores/roomStore';
@@ -40,6 +41,8 @@ const dotColorMap: Record<string, string> = {
   emerald: 'bg-emerald-500',
 };
 
+const localeMap = { ru, kz: kk } as const;
+
 export default function CalendarPage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -47,6 +50,8 @@ export default function CalendarPage() {
   const rooms = useRoomStore((state) => state.rooms);
   const allTasks = useTaskStore((state) => state.tasks);
   const completions = useCompletionStore((state) => state.completions);
+
+  const locale = localeMap[language] || ru;
 
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState<string>(
@@ -104,10 +109,10 @@ export default function CalendarPage() {
         };
       })
       .filter(Boolean) as Array<{
-      room: (typeof rooms)[0];
-      completedCount: number;
-      totalTasks: number;
-    }>;
+        room: (typeof rooms)[0];
+        completedCount: number;
+        totalTasks: number;
+      }>;
   }, [selectedDate, completions, rooms, allTasks]);
 
   const getDayDots = (day: Date) => {
@@ -128,28 +133,30 @@ export default function CalendarPage() {
   const prevMonth = () => setCurrentMonth(subMonths(currentMonth, 1));
 
   return (
-    <div className="pb-20">
+    <div className="animate-fade-in">
       <div className="px-4 pt-4">
-        <h1 className="text-2xl font-bold text-slate-100">
+        <h1 className="text-2xl font-extrabold text-slate-100">
           {t('calendar.title')}
         </h1>
       </div>
 
       <div className="px-4 pt-4">
-        <div className="bg-slate-900 rounded-xl p-4 border border-slate-800">
+        <div className="bg-slate-900 rounded-xl p-4 border border-slate-800 animate-scale-in">
           <div className="flex items-center justify-between mb-4">
             <button
               onClick={prevMonth}
-              className="p-2 hover:bg-slate-800 rounded-full text-slate-400 hover:text-white transition-colors"
+              className="p-2 hover:bg-slate-800 rounded-full text-slate-400 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
+              aria-label="Previous month"
             >
               <ChevronLeft size={18} />
             </button>
             <span className="text-sm font-semibold text-slate-200 capitalize">
-              {format(currentMonth, 'LLLL yyyy', { locale: ru })}
+              {format(currentMonth, 'LLLL yyyy', { locale })}
             </span>
             <button
               onClick={nextMonth}
-              className="p-2 hover:bg-slate-800 rounded-full text-slate-400 hover:text-white transition-colors"
+              className="p-2 hover:bg-slate-800 rounded-full text-slate-400 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
+              aria-label="Next month"
             >
               <ChevronRight size={18} />
             </button>
@@ -214,7 +221,7 @@ export default function CalendarPage() {
 
       <div className="px-4 pt-4">
         <h2 className="text-sm font-medium text-slate-400 uppercase tracking-wider mb-3">
-          {format(new Date(selectedDate), 'd MMMM', { locale: ru })}
+          {format(new Date(selectedDate), 'd MMMM', { locale })}
         </h2>
 
         {selectedDayDetail.length === 0 ? (
@@ -222,7 +229,7 @@ export default function CalendarPage() {
             {t('calendar.noActivity')}
           </div>
         ) : (
-          <div className="space-y-2">
+          <div className="space-y-2 animate-stagger">
             {selectedDayDetail.map(({ room, completedCount, totalTasks }) => {
               const IconComponent = iconMap[room.icon] || Home;
               const bgColor = colorMap[room.color] || 'bg-slate-700';
@@ -234,7 +241,7 @@ export default function CalendarPage() {
                 <button
                   key={room.id}
                   onClick={() => navigate(`/room/${room.id}`)}
-                  className="flex items-center gap-3 p-3 w-full rounded-xl bg-slate-900 hover:bg-slate-800 transition-colors text-left"
+                  className="flex items-center gap-3 p-3 w-full rounded-xl bg-slate-900 hover:bg-slate-800 active:scale-[0.98] transition-all duration-200 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
                 >
                   <div
                     className={`w-10 h-10 rounded-lg flex items-center justify-center ${bgColor}`}

@@ -28,6 +28,7 @@ function App() {
   useEffect(() => {
     if (language) {
       i18n.changeLanguage(language);
+      document.documentElement.lang = language === 'kz' ? 'kk' : language;
     }
   }, [language, i18n]);
 

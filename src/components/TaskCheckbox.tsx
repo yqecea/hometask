@@ -1,4 +1,3 @@
-import React from 'react';
 import { Checkbox } from '@/components/ui/checkbox';
 import { cn } from '@/lib/utils';
 
@@ -21,12 +20,15 @@ export const TaskCheckbox: React.FC<TaskCheckboxProps> = ({
         id={`task-${taskId}`}
         checked={isCompleted}
         onCheckedChange={onToggle}
-        className="border-slate-500 data-[state=checked]:bg-teal-500 data-[state=checked]:border-teal-500"
+        className={cn(
+          "border-slate-500 data-[state=checked]:bg-teal-500 data-[state=checked]:border-teal-500 transition-transform",
+          isCompleted && "animate-check-bounce"
+        )}
       />
       <label
         htmlFor={`task-${taskId}`}
         className={cn(
-          "text-base cursor-pointer select-none transition-colors",
+          "text-base cursor-pointer select-none transition-all duration-200",
           isCompleted ? "text-slate-500 line-through" : "text-slate-200"
         )}
       >

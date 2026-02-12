@@ -1,21 +1,24 @@
 import { useState, useMemo } from 'react';
-import { 
-  format, 
-  startOfMonth, 
-  endOfMonth, 
-  startOfWeek, 
-  endOfWeek, 
-  eachDayOfInterval, 
-  isSameMonth, 
-  isToday, 
-  addMonths, 
-  subMonths, 
-  isSameDay 
+import {
+  format,
+  startOfMonth,
+  endOfMonth,
+  startOfWeek,
+  endOfWeek,
+  eachDayOfInterval,
+  isSameMonth,
+  isToday,
+  addMonths,
+  subMonths,
+  isSameDay
 } from 'date-fns';
 import { ru } from 'date-fns/locale';
+import { kk } from 'date-fns/locale';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useCompletionStore } from '@/stores/completionStore';
 import { useTaskStore } from '@/stores/taskStore';
+import { useSettingsStore } from '@/stores/settingsStore';
+import { useTranslation } from 'react-i18next';
 
 interface RoomCalendarProps {
   roomId: string;
@@ -75,12 +78,17 @@ const textColorMap: Record<string, string> = {
   emerald: 'text-emerald-200',
 };
 
+const localeMap = { ru, kz: kk } as const;
+
 export function RoomCalendar({ roomId, roomColor, selectedDate, onDateSelect }: RoomCalendarProps) {
   const [currentMonth, setCurrentMonth] = useState(new Date());
-  
+  const { t } = useTranslation();
+  const language = useSettingsStore((state) => state.language);
+  const locale = localeMap[language] || ru;
+
   const { getTasksByRoom } = useTaskStore();
   const { getCompletionsForRoom } = useCompletionStore();
-  
+
   const tasks = getTasksByRoom(roomId);
   const completions = getCompletionsForRoom(roomId);
 
@@ -90,15 +98,23 @@ export function RoomCalendar({ roomId, roomColor, selectedDate, onDateSelect }: 
     return eachDayOfInterval({ start, end });
   }, [currentMonth]);
 
-  const weekDays = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+  const weekDays = [
+    t('dates.monday'),
+    t('dates.tuesday'),
+    t('dates.wednesday'),
+    t('dates.thursday'),
+    t('dates.friday'),
+    t('dates.saturday'),
+    t('dates.sunday'),
+  ];
 
   const getDayStatus = (day: Date) => {
     const dayStr = format(day, 'yyyy-MM-dd');
     const dayCompletions = completions.filter(c => c.date === dayStr);
-    
+
     if (tasks.length === 0) return 'empty';
-    
-    const completedCount = tasks.filter(task => 
+
+    const completedCount = tasks.filter(task =>
       dayCompletions.some(c => c.taskId === task.id)
     ).length;
 
@@ -113,18 +129,20 @@ export function RoomCalendar({ roomId, roomColor, selectedDate, onDateSelect }: 
   return (
     <div className="bg-slate-900 rounded-xl p-4 border border-slate-800 w-full max-w-sm">
       <div className="flex items-center justify-between mb-4">
-        <button 
+        <button
           onClick={prevMonth}
-          className="p-1 hover:bg-slate-800 rounded-full text-slate-400 hover:text-white transition-colors"
+          className="p-1 hover:bg-slate-800 rounded-full text-slate-400 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
+          aria-label="Previous month"
         >
           <ChevronLeft size={16} />
         </button>
         <span className="text-sm font-medium text-slate-200 capitalize">
-          {format(currentMonth, 'LLLL yyyy', { locale: ru })}
+          {format(currentMonth, 'LLLL yyyy', { locale })}
         </span>
-        <button 
+        <button
           onClick={nextMonth}
-          className="p-1 hover:bg-slate-800 rounded-full text-slate-400 hover:text-white transition-colors"
+          className="p-1 hover:bg-slate-800 rounded-full text-slate-400 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
+          aria-label="Next month"
         >
           <ChevronRight size={16} />
         </button>

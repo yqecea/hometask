@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils';
 export function StreakBadge() {
   const { t } = useTranslation();
   const completions = useCompletionStore((state) => state.completions);
-  
+
   const streak = useMemo(() => calculateStreak(completions), [completions]);
 
   const getBadgeStyles = (streak: number) => {
@@ -29,11 +29,16 @@ export function StreakBadge() {
   };
 
   return (
-    <Badge 
-      variant="secondary" 
-      className={cn("gap-1 transition-colors duration-300", getBadgeStyles(streak))}
+    <Badge
+      variant="secondary"
+      className={cn(
+        "gap-1 transition-all duration-300",
+        getBadgeStyles(streak),
+        streak > 0 && "animate-pulse-soft",
+        streak > 7 && "animate-glow shadow-sm"
+      )}
     >
-      <Flame className={cn("w-3 h-3", getIconColor(streak))} />
+      <Flame className={cn("w-3 h-3 transition-transform", getIconColor(streak))} />
       <span>{t('streak.days_many', { count: streak })}</span>
     </Badge>
   );

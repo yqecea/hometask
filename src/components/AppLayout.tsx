@@ -1,4 +1,3 @@
-import React from 'react';
 import BottomNav from './BottomNav';
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
