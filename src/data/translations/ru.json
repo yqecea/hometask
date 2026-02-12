@@ -1,0 +1,96 @@
+{
+  "nav": {
+    "home": "Мой Дом",
+    "schedule": "График",
+    "settings": "Настройки"
+  },
+  "home": {
+    "title": "Дом",
+    "rooms": "Комнаты",
+    "addRoom": "Добавить",
+    "noTasks": "Нет задач",
+    "tasksProgress": "{{completed}} из {{total}}"
+  },
+  "room": {
+    "tasks": "Задачи",
+    "addTask": "Добавить задачу",
+    "completed": "Выполнено",
+    "progress": "{{completed}} из {{total}} выполнено",
+    "noTasks": "Нет задач. Добавьте первую!",
+    "calendar": "Календарь уборки",
+    "back": "Назад"
+  },
+  "calendar": {
+    "title": "Календарь",
+    "today": "Сегодня",
+    "yesterday": "Вчера",
+    "noActivity": "Нет активности",
+    "roomsCleaned": "Убрано комнат: {{count}}"
+  },
+  "streak": {
+    "days_one": "{{count}} день",
+    "days_few": "{{count}} дня",
+    "days_many": "{{count}} дней",
+    "title": "Стрик"
+  },
+  "settings": {
+    "title": "Настройки",
+    "language": "Язык",
+    "languageRu": "Русский",
+    "languageKz": "Қазақша",
+    "data": "Данные",
+    "export": "Экспорт данных",
+    "import": "Импорт данных",
+    "importConfirm": "Это заменит все текущие данные. Продолжить?",
+    "importSuccess": "Данные успешно импортированы",
+    "importError": "Ошибка импорта данных",
+    "app": "Приложение",
+    "install": "Установить HomeTask",
+    "installed": "Приложение установлено",
+    "version": "Версия",
+    "about": "О приложении"
+  },
+  "common": {
+    "save": "Сохранить",
+    "cancel": "Отмена",
+    "delete": "Удалить",
+    "edit": "Редактировать",
+    "confirm": "Подтвердить",
+    "close": "Закрыть",
+    "name": "Название",
+    "icon": "Иконка",
+    "color": "Цвет"
+  },
+  "roomDialog": {
+    "addTitle": "Новая комната",
+    "editTitle": "Редактировать комнату",
+    "deleteTitle": "Удалить комнату?",
+    "deleteConfirm": "Все задачи и история уборки этой комнаты будут удалены.",
+    "namePlaceholder": "Название комнаты"
+  },
+  "taskDialog": {
+    "addTitle": "Новая задача",
+    "namePlaceholder": "Название задачи"
+  },
+  "dates": {
+    "monday": "Пн",
+    "tuesday": "Вт",
+    "wednesday": "Ср",
+    "thursday": "Чт",
+    "friday": "Пт",
+    "saturday": "Сб",
+    "sunday": "Вс",
+    "january": "Январь",
+    "february": "Февраль",
+    "march": "Март",
+    "april": "Апрель",
+    "may": "Май",
+    "june": "Июнь",
+    "july": "Июль",
+    "august": "Август",
+    "september": "Сентябрь",
+    "october": "Октябрь",
+    "november": "Ноябрь",
+    "december": "Декабрь"
+  }
+}

@@ -1,0 +1,26 @@
+import { Home, DoorOpen, CookingPot, ArrowUpDown, Layers, Sofa, Bath, WashingMachine, Bed, AppWindow, Sun, TreeDeciduous, Lamp, Tv, BookOpen, Shirt, Car, Dog, Cat, Flower2, Wrench, Box, type LucideIcon } from 'lucide-react';
+
+export const iconMap: Record<string, LucideIcon> = {
+  'home': Home,
+  'door-open': DoorOpen,
+  'cooking-pot': CookingPot,
+  'arrow-up-down': ArrowUpDown,
+  'layers': Layers,
+  'sofa': Sofa,
+  'bath': Bath,
+  'washing-machine': WashingMachine,
+  'bed': Bed,
+  'app-window': AppWindow,
+  'sun': Sun,
+  'tree-deciduous': TreeDeciduous,
+  'lamp': Lamp,
+  'tv': Tv,
+  'book-open': BookOpen,
+  'shirt': Shirt,
+  'car': Car,
+  'dog': Dog,
+  'cat': Cat,
+  'flower-2': Flower2,
+  'wrench': Wrench,
+  'box': Box,
+};

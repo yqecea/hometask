@@ -1,0 +1,63 @@
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useTaskStore } from '@/stores/taskStore';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+
+interface AddTaskDialogProps {
+  roomId: string;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+}
+
+export function AddTaskDialog({ roomId, open, onOpenChange }: AddTaskDialogProps) {
+  const { t } = useTranslation();
+  const addTask = useTaskStore((state) => state.addTask);
+
+  const [name, setName] = useState('');
+
+  const handleSave = async () => {
+    if (name.trim().length < 2) return;
+
+    await addTask({
+      roomId,
+      name: { ru: name, kz: name },
+    });
+
+    setName('');
+    onOpenChange(false);
+  };
+
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="sm:max-w-[425px] bg-slate-900 border-slate-800 text-slate-100">
+        <DialogHeader>
+          <DialogTitle>{t('taskDialog.addTitle')}</DialogTitle>
+        </DialogHeader>
+        <div className="grid gap-4 py-4">
+          <div className="grid gap-2">
+            <label htmlFor="task-name" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-slate-400">
+              {t('common.name')}
+            </label>
+            <Input
+              id="task-name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder={t('taskDialog.namePlaceholder')}
+              className="bg-slate-800 border-slate-700 text-slate-100 placeholder:text-slate-500"
+            />
+          </div>
+        </div>
+        <DialogFooter>
+          <Button variant="outline" onClick={() => onOpenChange(false)} className="bg-transparent border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white">
+            {t('common.cancel')}
+          </Button>
+          <Button onClick={handleSave} disabled={name.trim().length < 2} className="bg-teal-500 hover:bg-teal-600 text-white border-0">
+            {t('common.save')}
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}

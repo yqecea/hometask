@@ -1,0 +1,96 @@
+{
+  "nav": {
+    "home": "Менің Үйім",
+    "schedule": "Кесте",
+    "settings": "Баптаулар"
+  },
+  "home": {
+    "title": "Үй",
+    "rooms": "Бөлмелер",
+    "addRoom": "Қосу",
+    "noTasks": "Тапсырма жоқ",
+    "tasksProgress": "{{completed}} / {{total}}"
+  },
+  "room": {
+    "tasks": "Тапсырмалар",
+    "addTask": "Тапсырма қосу",
+    "completed": "Орындалды",
+    "progress": "{{completed}} / {{total}} орындалды",
+    "noTasks": "Тапсырма жоқ. Біріншісін қосыңыз!",
+    "calendar": "Тазалық күнтізбесі",
+    "back": "Артқа"
+  },
+  "calendar": {
+    "title": "Күнтізбе",
+    "today": "Бүгін",
+    "yesterday": "Кеше",
+    "noActivity": "Белсенділік жоқ",
+    "roomsCleaned": "Тазаланған бөлмелер: {{count}}"
+  },
+  "streak": {
+    "days_one": "{{count}} күн",
+    "days_few": "{{count}} күн",
+    "days_many": "{{count}} күн",
+    "title": "Стрик"
+  },
+  "settings": {
+    "title": "Баптаулар",
+    "language": "Тіл",
+    "languageRu": "Русский",
+    "languageKz": "Қазақша",
+    "data": "Деректер",
+    "export": "Деректерді экспорттау",
+    "import": "Деректерді импорттау",
+    "importConfirm": "Бұл барлық ағымдағы деректерді ауыстырады. Жалғастырасыз ба?",
+    "importSuccess": "Деректер сәтті импортталды",
+    "importError": "Деректерді импорттау қатесі",
+    "app": "Қосымша",
+    "install": "HomeTask орнату",
+    "installed": "Қосымша орнатылған",
+    "version": "Нұсқа",
+    "about": "Қосымша туралы"
+  },
+  "common": {
+    "save": "Сақтау",
+    "cancel": "Болдырмау",
+    "delete": "Жою",
+    "edit": "Өңдеу",
+    "confirm": "Растау",
+    "close": "Жабу",
+    "name": "Атауы",
+    "icon": "Белгіше",
+    "color": "Түс"
+  },
+  "roomDialog": {
+    "addTitle": "Жаңа бөлме",
+    "editTitle": "Бөлмені өңдеу",
+    "deleteTitle": "Бөлмені жою керек пе?",
+    "deleteConfirm": "Бұл бөлменің барлық тапсырмалары мен тазалық тарихы жойылады.",
+    "namePlaceholder": "Бөлме атауы"
+  },
+  "taskDialog": {
+    "addTitle": "Жаңа тапсырма",
+    "namePlaceholder": "Тапсырма атауы"
+  },
+  "dates": {
+    "monday": "Дс",
+    "tuesday": "Сс",
+    "wednesday": "Ср",
+    "thursday": "Бс",
+    "friday": "Жм",
+    "saturday": "Сб",
+    "sunday": "Жс",
+    "january": "Қаңтар",
+    "february": "Ақпан",
+    "march": "Наурыз",
+    "april": "Сәуір",
+    "may": "Мамыр",
+    "june": "Маусым",
+    "july": "Шілде",
+    "august": "Тамыз",
+    "september": "Қыркүйек",
+    "october": "Қазан",
+    "november": "Қараша",
+    "december": "Желтоқсан"
+  }
+}
