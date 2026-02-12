@@ -19,7 +19,6 @@ export const ColorPicker = ({ selected, onSelect }: ColorPickerProps) => {
             selected === name ? 'ring-2 ring-white ring-offset-2 ring-offset-slate-900 scale-110' : ''
           )}
           aria-label={name}
-          aria-pressed={selected === name}
           role="radio"
           aria-checked={selected === name}
         />

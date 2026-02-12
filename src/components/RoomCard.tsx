@@ -23,7 +23,7 @@ export const RoomCard = ({ room, onEdit }: RoomCardProps) => {
 
   const allTasks = useTaskStore((state) => state.tasks);
   const allCompletions = useCompletionStore((state) => state.completions);
-  const todayStr = useMemo(() => format(new Date(), 'yyyy-MM-dd'), []);
+  const todayStr = format(new Date(), 'yyyy-MM-dd');
 
   const tasks = useMemo(
     () => allTasks.filter((t) => t.roomId === room.id),
